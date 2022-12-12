@@ -26,7 +26,8 @@
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.11.2",
         "react-transition-group": "^4.4.5",
-        "recharts": "^2.6.2"
+        "react-window": "^1.8.8",
+        "recharts": "^2.2.0"
     },
     "devDependencies": {
         "@types/luxon": "^3.3.0",
