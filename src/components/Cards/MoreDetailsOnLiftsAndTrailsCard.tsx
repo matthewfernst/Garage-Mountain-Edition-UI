@@ -1,9 +1,6 @@
 import {
     AppBar,
     Box,
-    Button,
-    Card,
-    CardContent,
     LinearProgress,
     Paper,
     Tab,
@@ -25,7 +22,6 @@ import SnowShoeingLight from "../../assets/difficulty-icons/snowshoeing_light.sv
 import TerrainPark from "../../assets/difficulty-icons/terrain_park_large.svg";
 
 import { Fragment, useState } from "react";
-import { grey } from "@mui/material/colors";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -37,7 +33,7 @@ interface TabPanelProps {
 function a11yProps(index: number) {
     return {
         id: `full-width-tab-${index}`,
-        "aria-controls": `full-width-tabpanel-${index}`
+        "aria-controls": `full-width-tabpanel-${index}`,
     };
 }
 
@@ -51,6 +47,7 @@ function TabPanel(props: TabPanelProps) {
             id={`full-width-tabpanel-${index}`}
             aria-labelledby={`full-width-tab-${index}`}
             {...other}
+            style={{ overflow: "auto", maxHeight: 300}}
         >
             {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
         </div>
@@ -66,7 +63,7 @@ const MoreDetailsOnLiftsAndTrailsCard = () => {
         `https://mtnpowder.com/feed?resortId=${VITE_SKI_RESORT_ID}`
     )?.MountainAreas[0];
 
-    if (!mountainAreas) return null;
+    if (!mountainAreas) return <LoadingScreen />;
 
     const trailsOpen = getOnlyOpenData(mountainAreas?.Trails);
     const liftsOpen = getOnlyOpenData(mountainAreas?.Lifts);
