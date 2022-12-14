@@ -86,7 +86,7 @@ const MoreDetailsOnLiftsAndTrailsCard = () => {
                 height: "100%"
             }}
         >
-            <AppBar position="static">
+            <AppBar position="static" color="transparent" elevation={0}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -97,8 +97,20 @@ const MoreDetailsOnLiftsAndTrailsCard = () => {
                             theme.palette.mode === "light" ? theme.palette.neutral.light : "#121212"
                     }}
                 >
-                    <Tab label="Trails" {...a11yProps(0)} />
-                    <Tab label="Lifts" {...a11yProps(1)} />
+                    <Tab
+                        label="Trails"
+                        {...a11yProps(0)}
+                        sx={{
+                            backgroundColor: theme.palette.mode === "light" ? "#ffffff" : "#121212"
+                        }}
+                    />
+                    <Tab
+                        label="Lifts"
+                        {...a11yProps(1)}
+                        sx={{
+                            backgroundColor: theme.palette.mode === "light" ? "#ffffff" : "#121212"
+                        }}
+                    />
                 </Tabs>
             </AppBar>
             <SwipeableViews
