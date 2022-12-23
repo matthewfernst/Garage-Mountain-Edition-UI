@@ -70,7 +70,7 @@ const SteamboatInteractiveMap = () => {
                     ].forEach((element) => element?.remove());
                 }
             }
-        }, 1000);
+        }, 2000);
         return () => clearTimeout(iframeReactLoadDelayTimeout);
     }, [mapRef]);
 
