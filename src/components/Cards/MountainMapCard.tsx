@@ -71,19 +71,13 @@ const SteamboatInteractiveMap = () => {
         return () => clearTimeout(iframeReactLoadDelayTimeout);
     }, [mapRef]);
 
-    const setUserAgent = (window: any, userAgent: any) => {
-        if (window.navigator.userAgent != userAgent) {
-            var userAgentProp = {
-                get: function () {
-                    return userAgent;
-                }
-            };
+    const setUserAgent = (window: Window | null, userAgent: string) => {
+        if (window && window.navigator.userAgent != userAgent) {
+            const userAgentProp = { get: () => userAgent };
             try {
                 Object.defineProperty(window.navigator, "userAgent", userAgentProp);
             } catch (e) {
-                window.navigator = Object.create(navigator, {
-                    userAgent: userAgentProp
-                });
+                (window as any).navigator = Object.create(navigator, { userAgent: userAgentProp });
             }
         }
     };
