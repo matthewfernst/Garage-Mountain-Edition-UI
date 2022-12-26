@@ -24,6 +24,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Cell, Label, Pie, PieChart } from "recharts";
 
 import callExternalAPIOnInterval from "../../hooks/callExternalAPIOnInterval";
+import SpecialDaysCard from "./SpecialDaysCard";
 
 const MountainMapCard = () => {
     return (
@@ -38,9 +39,17 @@ const MountainMapCard = () => {
                 flexDirection={"column"}
                 justifyContent={"space-between"}
             >
-                <Box display={"flex"} justifyContent={"end"}>
-                    <Box pt={2} pr={2}>
-                        <LiveStreams />
+                <Box display={"flex"} justifyContent={"space-between"}>
+                    <Box />
+                    <Box display={"flex"}>
+                        <Box pt={2}>
+                            <SpecialDaysCard />
+                        </Box>
+                    </Box>
+                    <Box display={"flex"} justifyContent={"end"}>
+                        <Box pt={2} pr={2}>
+                            <LiveStreams />
+                        </Box>
                     </Box>
                 </Box>
                 <Box pb={1} pl={1}>
