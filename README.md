@@ -22,6 +22,9 @@ The project uses environment variables to store API keys and other sensitive inf
 VITE_LATITUDE=40.4850 
 VITE_LONGITUDE=-106.8317
 
+// Zip code for the UV Index API
+VITE_ZIP_CODE=80487
+
 // National Weather Serivce Zone
 VITE_NATIONAL_WEATHER_SERVICE_ZONE= // Your zone
 
@@ -31,7 +34,7 @@ VITE_SKI_RESORT_ID= // Your ski resort id
 // How often to hit the API's in milliseconds
 VITE_TIME_INTERVAL=60000
 
-// Youtube Button Link and Title
+// Youtube Button Link and Title (Each link and title should be separated by a comma)
 VITE_YOUTUBE_LIVE_STREAM_LINK= // Your live stream link
 VITE_LIVE_STREAM_BUTTON_TITLE= // Your live stream title
 ```
