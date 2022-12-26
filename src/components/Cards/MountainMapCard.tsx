@@ -120,7 +120,9 @@ const LiftAndTrailStatus = () => {
                 borderWidth: 2,
                 borderStyle: "solid",
                 backgroundColor:
-                    theme.palette.mode === "dark" ? "#121212" : theme.palette.neutral.light,
+                    theme.palette.mode === "dark"
+                        ? theme.palette.neutral.contrastText
+                        : theme.palette.neutral.light,
                 borderRadius: 5
             }}
             display={"flex"}
@@ -203,7 +205,10 @@ const FractionLabel = (
 ) => {
     const { cx, cy } = props.viewBox;
     const theme = useTheme();
-    const textColor = theme.palette.mode === "dark" ? theme.palette.neutral.light : "#121212";
+    const textColor =
+        theme.palette.mode === "dark"
+            ? theme.palette.neutral.light
+            : theme.palette.neutral.contrastText;
     return (
         <>
             <text
@@ -236,7 +241,10 @@ const FractionLabel = (
 const PercentLabel = (props: { percentOpen: number; chartUnit: string } & any) => {
     const { cx, cy } = props.viewBox;
     const theme = useTheme();
-    const textColor = theme.palette.mode === "dark" ? theme.palette.neutral.light : "#121212";
+    const textColor =
+        theme.palette.mode === "dark"
+            ? theme.palette.neutral.light
+            : theme.palette.neutral.contrastText;
 
     return (
         <>

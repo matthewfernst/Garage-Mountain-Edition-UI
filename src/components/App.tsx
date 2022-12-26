@@ -14,20 +14,20 @@ import DashBoard from "./Dashboard";
 
 /* eslint-disable no-unused-vars */
 declare module "@mui/material/styles" {
-	interface Palette {
+    interface Palette {
         neutral: Palette["primary"];
     }
     interface PaletteOptions {
         neutral: PaletteOptions["primary"];
     }
 
-	interface PaletteColor {
+    interface PaletteColor {
         medium?: string;
-		mediumDark?: string;
+        mediumDark?: string;
     }
     interface SimplePaletteColorOptions {
         medium?: string;
-		mediumDark?: string;
+        mediumDark?: string;
     }
 }
 /* eslint-enable no-unused-vars */
@@ -66,7 +66,8 @@ const App = () => {
                     light: grey[100],
                     medium: grey[200],
                     mediumDark: grey[300],
-                    dark: grey[600]
+                    dark: grey[600],
+                    contrastText: "#121212"
                 }
             }
         })
