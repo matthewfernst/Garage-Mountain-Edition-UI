@@ -188,8 +188,8 @@ const TomorrowsWeather = (props: any) => {
                 <Box display={"flex"} alignItems={"center"}>
                     <AirIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
                     <Typography sx={{ pl: 0.5 }}>
-                        {tomorrowsInfo.avewind ? tomorrowsInfo.avewind.mph : "0mph"}{" "}
-                        {tomorrowsInfo.avewind ? tomorrowsInfo.avewind.dir : "N/A"}
+                        {tomorrowsInfo.avewind ? tomorrowsInfo.avewind.mph.split("m")[0] : "--"}{" "}
+                        {"mph"} {tomorrowsInfo.avewind ? tomorrowsInfo.avewind.dir : "N/A"}
                     </Typography>
                 </Box>
             </Box>
