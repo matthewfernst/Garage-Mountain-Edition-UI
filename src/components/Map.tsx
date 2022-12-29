@@ -38,7 +38,7 @@ const Map = () => {
                                 borderBottomLeftRadius: 28
                             }}
                         >
-                            <RemoveIcon sx={{ fontSize: 15 }} />
+                            <RemoveIcon sx={{ fontSize: 20 }} />
                         </Button>
                         <Divider orientation={"vertical"} flexItem />
                         <Button
@@ -51,7 +51,7 @@ const Map = () => {
                                 borderBottomRightRadius: 28
                             }}
                         >
-                            <AddIcon sx={{ fontSize: 15 }} />
+                            <AddIcon sx={{ fontSize: 20 }} />
                         </Button>
                     </Box>
                 </Box>
