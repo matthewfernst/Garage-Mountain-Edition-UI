@@ -46,7 +46,7 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                                 background: `linear-gradient(to right, ${
                                                     "hsl(" +
                                                     [
-                                                        200 - 170 * (day.temp_low_f / 100),
+                                                        240 - 170 * (day.temp_low_f / 75),
                                                         "90%",
                                                         "50%"
                                                     ] +
@@ -54,7 +54,7 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                                 } 30%, ${
                                                     "hsl(" +
                                                     [
-                                                        200 - 170 * (day.temp_high_f / 100),
+                                                        240 - 170 * (day.temp_high_f / 75),
                                                         "90%",
                                                         "50%"
                                                     ] +
