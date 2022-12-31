@@ -84,7 +84,6 @@ const ImportantAlerts = () => {
                         setShowAlert={setShowNationalWeatherAlert}
                         title={"National Weather Service Alert"}
                         message={nationalWeatherServiceAlert}
-                        didView={nationalWeatherServiceViewed}
                         setDidView={setNationalWeatherServiceViewed}
                     />
                 )}
@@ -97,7 +96,6 @@ const ImportantAlerts = () => {
                         setShowAlert={setShowSnowPatrolAlert}
                         title={"Snow Patrol Alert"}
                         message={snowPatrolAlert}
-                        didView={snowPatrolViewed}
                         setDidView={setSnowPatrolViewed}
                     />
                 )}
