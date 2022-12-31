@@ -4,6 +4,7 @@ import {
     Alert,
     AlertTitle,
     Badge,
+    Box,
     Collapse,
     IconButton,
     Popover,
@@ -36,41 +37,58 @@ const ImportantAlerts = () => {
         return null;
     }
 
-    return (
-        <>
-            {nationalWeatherServiceAlert && (
-                <CollapsableAlert
-                    severity={"warning"}
-                    showAlert={showNationalWeatherAlert}
-                    setShowAlert={setShowNationalWeatherAlert}
-                    title={"National Weather Service Alert"}
-                    message={nationalWeatherServiceAlert}
-                />
-            )}
-            {snowPatrolAlert && snowPatrolAlert !== "--" && (
-                <CollapsableAlert
-                    severity={"warning"}
-                    showAlert={showSnowPatrolAlert}
-                    setShowAlert={setShowSnowPatrolAlert}
-                    title={"Snow Patrol Alert"}
-                    message={snowPatrolAlert}
-                />
-            )}
-        </>
-    );
-};
+    const badgeNumber =
+        (snowPatrolAlert && snowPatrolAlert !== "--" ? 1 : 0) +
+        (nationalWeatherServiceAlert ? 1 : 0);
 
-const CollapsableAlert = (props: any) => {
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    if (!props.showAlert) {
+    console.log(showNationalWeatherAlert, showSnowPatrolAlert);
+    if (!showNationalWeatherAlert && !showSnowPatrolAlert) {
         return (
-            <IconButton edge={"end"} color={"inherit"} onClick={() => props.setShowAlert(true)}>
-                <Badge badgeContent={1} color={"error"}>
+            <IconButton
+                edge={"end"}
+                color={"inherit"}
+                onClick={() => {
+                    nationalWeatherServiceAlert && setShowNationalWeatherAlert(true);
+                    snowPatrolAlert && setShowSnowPatrolAlert(true);
+                }}
+            >
+                <Badge badgeContent={badgeNumber} color={"error"}>
                     <ReportProblemIcon sx={{ fontSize: 24 }} />
                 </Badge>
             </IconButton>
         );
     }
+
+    return (
+        <Box>
+            <Box>
+                {nationalWeatherServiceAlert && (
+                    <CollapsableAlert
+                        severity={"warning"}
+                        showAlert={showNationalWeatherAlert}
+                        setShowAlert={setShowNationalWeatherAlert}
+                        title={"National Weather Service Alert"}
+                        message={nationalWeatherServiceAlert}
+                    />
+                )}
+            </Box>
+            <Box>
+                {snowPatrolAlert && snowPatrolAlert !== "--" && (
+                    <CollapsableAlert
+                        severity={"warning"}
+                        showAlert={showSnowPatrolAlert}
+                        setShowAlert={setShowSnowPatrolAlert}
+                        title={"Snow Patrol Alert"}
+                        message={snowPatrolAlert}
+                    />
+                )}
+            </Box>
+        </Box>
+    );
+};
+
+const CollapsableAlert = (props: any) => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     return (
         <Popover

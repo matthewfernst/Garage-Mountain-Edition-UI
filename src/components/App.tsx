@@ -81,7 +81,7 @@ const App = () => {
                 secondary: { main: red[600], dark: red[800] },
                 neutral: {
                     main: "#FFFFFF",
-                    light: grey[100],
+                    light: grey[200],
                     medium: grey[200],
                     mediumDark: grey[300],
                     dark: grey[900]
