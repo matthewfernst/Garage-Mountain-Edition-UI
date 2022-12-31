@@ -100,12 +100,12 @@ const App = () => {
         const nowHour = DateTime.now().hour;
         const sunsetHour = DateTime.fromISO(sunData.results.sunset).hour;
         const sunriseHour = DateTime.fromISO(sunData.results.sunrise).hour;
-        console.log("SUNSET", nowHour < sunriseHour + 1 || nowHour > sunsetHour + 1);
+
         if (nowHour < sunriseHour + 1 || nowHour > sunsetHour + 1) {
             mode = "dark";
         }
     }
-    console.log("MODE", mode);
+
     const theme = responsiveFontSizes(
         createTheme({
             palette: {
