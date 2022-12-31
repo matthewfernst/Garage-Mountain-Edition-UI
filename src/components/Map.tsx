@@ -26,14 +26,26 @@ const Map = () => {
                 <Box pb={2} pr={2} display={"flex"} justifyContent={"end"}>
                     <Box
                         display={"flex"}
-                        sx={{ backgroundColor: theme.palette.neutral.main, borderRadius: 5 }}
+                        sx={{
+                            backgroundColor:
+                                theme.palette.mode == "light"
+                                    ? theme.palette.neutral.main
+                                    : "#121212",
+                            borderRadius: 5
+                        }}
                     >
                         <Button
                             variant={"text"}
                             sx={{
                                 pointerEvents: "auto",
-                                backgroundColor: theme.palette.neutral.main,
-                                color: theme.palette.neutral.dark,
+                                backgroundColor:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.main
+                                        : "#121212",
+                                color:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.dark
+                                        : theme.palette.neutral.main,
                                 borderTopLeftRadius: 28,
                                 borderBottomLeftRadius: 28
                             }}
@@ -45,8 +57,14 @@ const Map = () => {
                             variant={"text"}
                             sx={{
                                 pointerEvents: "auto",
-                                backgroundColor: theme.palette.neutral.main,
-                                color: theme.palette.neutral.dark,
+                                backgroundColor:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.main
+                                        : "#121212",
+                                color:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.dark
+                                        : theme.palette.neutral.main,
                                 borderTopRightRadius: 28,
                                 borderBottomRightRadius: 28
                             }}
@@ -64,7 +82,7 @@ const Map = () => {
 const SteamboatInteractiveMap = () => {
     const { VITE_MAP_ANIMATIONS } = import.meta.env;
     const mapRef = useRef<HTMLIFrameElement>(null);
-
+    const theme = useTheme();
     useEffect(() => {
         const iframeReactLoadDelayTimeout = setTimeout(() => {
             if (mapRef.current) {
@@ -80,11 +98,11 @@ const SteamboatInteractiveMap = () => {
                     ].forEach((element) => element?.remove());
 
                     const map = iframeDocument.getElementById("_Image1");
-                    if (map) {
+                    if (map && theme.palette.mode === "dark") {
                         map.setAttributeNS(
                             "http://www.w3.org/1999/xlink",
                             "xlink:href",
-                            "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatTrailMap.png"
+                            "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatDarkMode.jpg"
                         );
                     }
                 }
@@ -104,9 +122,11 @@ const SteamboatInteractiveMap = () => {
         }
     };
 
+    const opacity = theme.palette.mode === "dark" ? 1 : 0.8;
+
     return (
         <iframe
-            src={`https://vicomap-cdn.resorts-interactive.com/map/1800?fullscreen=true&menu=3.7,3.10,3.14&openLiftAnimation=${VITE_MAP_ANIMATIONS}&openLiftColor=green&liftHighlightOpacity=0.1&backgroundOpacity=0.5`}
+            src={`https://vicomap-cdn.resorts-interactive.com/map/1800?fullscreen=true&menu=3.7,3.10,3.14&openLiftAnimation=${VITE_MAP_ANIMATIONS}&openLiftColor=green&liftHighlightOpacity=0.1&backgroundOpacity=${opacity}`}
             width="100%"
             height="100%"
             allowFullScreen

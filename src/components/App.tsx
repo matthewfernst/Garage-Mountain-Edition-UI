@@ -1,4 +1,12 @@
-import { Box, CssBaseline, Drawer, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+    Box,
+    CssBaseline,
+    PaletteMode,
+    Drawer,
+    IconButton,
+    Toolbar,
+    Typography
+} from "@mui/material";
 import { blue, grey, red } from "@mui/material/colors";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
@@ -9,12 +17,14 @@ import {
     ThemeProvider,
     StyledEngineProvider
 } from "@mui/material/styles";
+import { DateTime } from "luxon";
 
 import SideBar from "./SideBar";
 import MountainMapCard from "./Map";
 import ImportantAlertsCard from "./Map/ImportantAlerts";
 import { useState } from "react";
 import LiveStreams from "./LiveStreams";
+import callExternalAPIOnInterval from "../hooks/callExternalAPIOnInterval";
 
 /* eslint-disable no-unused-vars */
 declare module "@mui/material/styles" {
@@ -74,9 +84,32 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const App = () => {
+    const { VITE_TIME_INTERVAL, VITE_LATITUDE, VITE_LONGITUDE } = import.meta.env;
+    if (!VITE_TIME_INTERVAL) {
+        throw new Error("Missing .env file. Please refer to the README.md for more information.");
+    }
+
+    const sunData: any | undefined = callExternalAPIOnInterval(
+        VITE_TIME_INTERVAL,
+        `https://api.sunrise-sunset.org/json?lat=${VITE_LATITUDE}&lng=${VITE_LONGITUDE}&formatted=0`
+    );
+
+    let mode: PaletteMode = "light";
+
+    if (sunData) {
+        const nowHour = DateTime.now().hour;
+        const sunsetHour = DateTime.fromISO(sunData.results.sunset).hour;
+        const sunriseHour = DateTime.fromISO(sunData.results.sunrise).hour;
+
+        if (nowHour < sunriseHour + 1 || nowHour > sunsetHour + 1) {
+            mode = "dark";
+        }
+    }
+
     const theme = responsiveFontSizes(
         createTheme({
             palette: {
+                mode,
                 primary: { main: blue[800] },
                 secondary: { main: red[600], dark: red[800] },
                 neutral: {
@@ -106,8 +139,14 @@ const App = () => {
                             sx={{
                                 minHeight: 48,
                                 justifyContent: "space-between",
-                                backgroundColor: theme.palette.neutral.main,
-                                color: theme.palette.neutral.dark
+                                backgroundColor:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.main
+                                        : "#121212",
+                                color:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.dark
+                                        : theme.palette.neutral.main
                             }}
                         >
                             <Box display={"flex"} alignItems={"center"}>
