@@ -55,7 +55,7 @@ const TodaysWeather = (props: { todaysWeather: any; todaysSnow: any }) => {
                 </Box>
                 <Box display={"flex"} alignItems={"center"}>
                     <ScaleIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
-                    <Typography sx={{ pl: 1 }}>{props.todaysWeather.PressureIN} Hg</Typography>
+                    <Typography sx={{ pl: 1 }}>{props.todaysWeather.PressureIN} inHg</Typography>
                 </Box>
                 <Box display={"flex"} alignItems={"center"}>
                     <AcUnitIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
