@@ -26,6 +26,11 @@ const ImportantAlerts = () => {
         useState<boolean>(false);
     const [snowPatrolViewed, setSnowPatrolViewed] = useState<boolean>(false);
 
+    const [prevNationalWeatherServiceAlert, setPrevNationalWeatherServiceAlert] = useState<
+        string | null
+    >(null);
+    const [prevSnowPatrolAlert, setPrevSnowPatrolAlert] = useState<string | null>(null);
+
     const resortData = callExternalAPIOnInterval(
         VITE_TIME_INTERVAL,
         `https://mtnpowder.com/feed?resortId=${VITE_SKI_RESORT_ID}`
@@ -40,6 +45,16 @@ const ImportantAlerts = () => {
 
     if (snowPatrolAlert === "--" && !nationalWeatherServiceAlert) {
         return null;
+    }
+
+    if (prevNationalWeatherServiceAlert !== nationalWeatherServiceAlert) {
+        setPrevNationalWeatherServiceAlert(nationalWeatherServiceAlert);
+        setNationalWeatherServiceViewed(false);
+    }
+
+    if (prevSnowPatrolAlert !== snowPatrolAlert) {
+        setPrevSnowPatrolAlert(snowPatrolAlert);
+        setSnowPatrolViewed(false);
     }
 
     const getBadgeNumber = () => {
