@@ -10,7 +10,7 @@ import {
     Popover,
     Typography
 } from "@mui/material";
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import ReportIcon from "@mui/icons-material/Report";
 import CloseIcon from "@mui/icons-material/Close";
 
 import callExternalAPIOnInterval from "../../hooks/callExternalAPIOnInterval";
@@ -22,10 +22,15 @@ const ImportantAlerts = () => {
     const [showNationalWeatherAlert, setShowNationalWeatherAlert] = useState<boolean>(false);
     const [showSnowPatrolAlert, setShowSnowPatrolAlert] = useState<boolean>(false);
 
+    const [nationalWeatherServiceViewed, setNationalWeatherServiceViewed] =
+        useState<boolean>(false);
+    const [snowPatrolViewed, setSnowPatrolViewed] = useState<boolean>(false);
+
     const resortData = callExternalAPIOnInterval(
         VITE_TIME_INTERVAL,
         `https://mtnpowder.com/feed?resortId=${VITE_SKI_RESORT_ID}`
     );
+
     const nationalWeatherServiceAlert = callExternalAPIOnInterval(
         VITE_TIME_INTERVAL,
         `https://api.weather.gov/alerts/active?zone=${VITE_NATIONAL_WEATHER_SERVICE_ZONE}`
@@ -37,11 +42,17 @@ const ImportantAlerts = () => {
         return null;
     }
 
-    const badgeNumber =
-        (snowPatrolAlert && snowPatrolAlert !== "--" ? 1 : 0) +
-        (nationalWeatherServiceAlert ? 1 : 0);
+    const getBadgeNumber = () => {
+        let number: number = 0;
+        if (nationalWeatherServiceAlert && !nationalWeatherServiceViewed) {
+            number++;
+        }
+        if (snowPatrolAlert !== "--" && !snowPatrolViewed) {
+            number++;
+        }
+        return number;
+    };
 
-    console.log(showNationalWeatherAlert, showSnowPatrolAlert);
     if (!showNationalWeatherAlert && !showSnowPatrolAlert) {
         return (
             <IconButton
@@ -49,11 +60,15 @@ const ImportantAlerts = () => {
                 color={"inherit"}
                 onClick={() => {
                     nationalWeatherServiceAlert && setShowNationalWeatherAlert(true);
-                    snowPatrolAlert && setShowSnowPatrolAlert(true);
+                    snowPatrolAlert !== "--" && setShowSnowPatrolAlert(true);
                 }}
             >
-                <Badge badgeContent={badgeNumber} color={"error"}>
-                    <ReportProblemIcon sx={{ fontSize: 24 }} />
+                <Badge
+                    badgeContent={getBadgeNumber()}
+                    color={"error"}
+                    sx={{ "& .MuiBadge-badge": { fontSize: 11, height: 18, minWidth: 18 } }}
+                >
+                    <ReportIcon sx={{ fontSize: 24 }} />
                 </Badge>
             </IconButton>
         );
@@ -69,6 +84,8 @@ const ImportantAlerts = () => {
                         setShowAlert={setShowNationalWeatherAlert}
                         title={"National Weather Service Alert"}
                         message={nationalWeatherServiceAlert}
+                        didView={nationalWeatherServiceViewed}
+                        setDidView={setNationalWeatherServiceViewed}
                     />
                 )}
             </Box>
@@ -80,6 +97,8 @@ const ImportantAlerts = () => {
                         setShowAlert={setShowSnowPatrolAlert}
                         title={"Snow Patrol Alert"}
                         message={snowPatrolAlert}
+                        didView={snowPatrolViewed}
+                        setDidView={setSnowPatrolViewed}
                     />
                 )}
             </Box>
@@ -116,6 +135,7 @@ const CollapsableAlert = (props: any) => {
                             size="small"
                             onClick={() => {
                                 props.setShowAlert(false);
+                                props.setDidView(true);
                             }}
                         >
                             <CloseIcon fontSize="inherit" />
