@@ -8,6 +8,7 @@ import SpecialDays from "./Map/SpecialDays";
 
 const Map = () => {
     const theme = useTheme();
+    const mode = theme.palette.mode;
     return (
         <Box position={"relative"} width={"100%"} height={"100%"} sx={{ pointerEvents: "none" }}>
             <Box
@@ -26,14 +27,26 @@ const Map = () => {
                 <Box pb={2} pr={2} display={"flex"} justifyContent={"end"}>
                     <Box
                         display={"flex"}
-                        sx={{ backgroundColor: theme.palette.neutral.main, borderRadius: 5 }}
+                        sx={{
+                            backgroundColor:
+                                theme.palette.mode == "light"
+                                    ? theme.palette.neutral.main
+                                    : "#121212",
+                            borderRadius: 5
+                        }}
                     >
                         <Button
                             variant={"text"}
                             sx={{
                                 pointerEvents: "auto",
-                                backgroundColor: theme.palette.neutral.main,
-                                color: theme.palette.neutral.dark,
+                                backgroundColor:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.main
+                                        : "#121212",
+                                color:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.dark
+                                        : theme.palette.neutral.main,
                                 borderTopLeftRadius: 28,
                                 borderBottomLeftRadius: 28
                             }}
@@ -45,8 +58,14 @@ const Map = () => {
                             variant={"text"}
                             sx={{
                                 pointerEvents: "auto",
-                                backgroundColor: theme.palette.neutral.main,
-                                color: theme.palette.neutral.dark,
+                                backgroundColor:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.main
+                                        : "#121212",
+                                color:
+                                    theme.palette.mode == "light"
+                                        ? theme.palette.neutral.dark
+                                        : theme.palette.neutral.main,
                                 borderTopRightRadius: 28,
                                 borderBottomRightRadius: 28
                             }}
@@ -56,12 +75,12 @@ const Map = () => {
                     </Box>
                 </Box>
             </Box>
-            <SteamboatInteractiveMap />
+            <SteamboatInteractiveMap mode={mode}/>
         </Box>
     );
 };
 
-const SteamboatInteractiveMap = () => {
+const SteamboatInteractiveMap = (props: {mode: string}) => {
     const { VITE_MAP_ANIMATIONS } = import.meta.env;
     const mapRef = useRef<HTMLIFrameElement>(null);
 
@@ -78,13 +97,14 @@ const SteamboatInteractiveMap = () => {
                         iframeDocument.getElementById("zoomControls"),
                         iframeDocument.getElementById("menu")
                     ].forEach((element) => element?.remove());
-
-                    const map = iframeDocument.getElementById("_Image1");
-                    if (map) {
+                    const map = iframeDocument.getElementById("_Image1");     
+                    map?.setAttribute("style", "opacity: 1;");
+                    console.log(props.mode)
+                    if (map && props.mode === "dark") {
                         map.setAttributeNS(
                             "http://www.w3.org/1999/xlink",
                             "xlink:href",
-                            "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatTrailMap.png"
+                            "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatDarkMode.jpg"
                         );
                     }
                 }
