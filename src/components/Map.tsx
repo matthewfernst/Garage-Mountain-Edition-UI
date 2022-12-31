@@ -8,7 +8,6 @@ import SpecialDays from "./Map/SpecialDays";
 
 const Map = () => {
     const theme = useTheme();
-    const mode = theme.palette.mode;
     return (
         <Box position={"relative"} width={"100%"} height={"100%"} sx={{ pointerEvents: "none" }}>
             <Box
@@ -75,15 +74,15 @@ const Map = () => {
                     </Box>
                 </Box>
             </Box>
-            <SteamboatInteractiveMap mode={mode}/>
+            <SteamboatInteractiveMap />
         </Box>
     );
 };
 
-const SteamboatInteractiveMap = (props: {mode: string}) => {
+const SteamboatInteractiveMap = () => {
     const { VITE_MAP_ANIMATIONS } = import.meta.env;
     const mapRef = useRef<HTMLIFrameElement>(null);
-
+    const theme = useTheme();
     useEffect(() => {
         const iframeReactLoadDelayTimeout = setTimeout(() => {
             if (mapRef.current) {
@@ -97,10 +96,9 @@ const SteamboatInteractiveMap = (props: {mode: string}) => {
                         iframeDocument.getElementById("zoomControls"),
                         iframeDocument.getElementById("menu")
                     ].forEach((element) => element?.remove());
-                    const map = iframeDocument.getElementById("_Image1");     
-                    map?.setAttribute("style", "opacity: 1;");
-                    console.log(props.mode)
-                    if (map && props.mode === "dark") {
+
+                    const map = iframeDocument.getElementById("_Image1");
+                    if (map && theme.palette.mode === "dark") {
                         map.setAttributeNS(
                             "http://www.w3.org/1999/xlink",
                             "xlink:href",
@@ -124,9 +122,11 @@ const SteamboatInteractiveMap = (props: {mode: string}) => {
         }
     };
 
+    const opacity = theme.palette.mode === "dark" ? 1 : 0.8;
+
     return (
         <iframe
-            src={`https://vicomap-cdn.resorts-interactive.com/map/1800?fullscreen=true&menu=3.7,3.10,3.14&openLiftAnimation=${VITE_MAP_ANIMATIONS}&openLiftColor=green&liftHighlightOpacity=0.1&backgroundOpacity=0.5`}
+            src={`https://vicomap-cdn.resorts-interactive.com/map/1800?fullscreen=true&menu=3.7,3.10,3.14&openLiftAnimation=${VITE_MAP_ANIMATIONS}&openLiftColor=green&liftHighlightOpacity=0.1&backgroundOpacity=${opacity}`}
             width="100%"
             height="100%"
             allowFullScreen
