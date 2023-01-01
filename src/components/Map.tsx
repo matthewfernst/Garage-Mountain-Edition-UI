@@ -105,7 +105,7 @@ const SteamboatInteractiveMap = () => {
             }
         }, 5000);
         return () => clearTimeout(iframeReactLoadDelayTimeout);
-    }, [mapRef]);
+    }, [mapRef, theme]);
 
     const setUserAgent = (window: Window | null, userAgent: string) => {
         if (window && window.navigator.userAgent != userAgent) {
