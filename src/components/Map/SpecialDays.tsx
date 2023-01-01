@@ -73,12 +73,10 @@ const SpecialDays = () => {
 
     if (!specialDay) return null;
     return (
-        <Box display={"flex"} alignItems={"center"} style={{ width: "100%" }} mb={2}>
-            <Typography sx={{ fontSize: 30, mr: 2 }}>{specialDay.emoji}</Typography>
-            <Typography style={{ fontWeight: 600, fontSize: 30 }}>
-                {specialDay.text}
-            </Typography>
-            <Typography sx={{ fontSize: 30, ml: 2 }}>{specialDay.emoji}</Typography>
+        <Box display={"flex"} alignItems={"center"} style={{ width: "100%" }}>
+            <Typography sx={{ fontSize: 20, mr: 2 }}>{specialDay.emoji}</Typography>
+            <Typography style={{ fontWeight: 500, fontSize: 20 }}>{specialDay.text}</Typography>
+            <Typography sx={{ fontSize: 20, ml: 2 }}>{specialDay.emoji}</Typography>
         </Box>
     );
 };
