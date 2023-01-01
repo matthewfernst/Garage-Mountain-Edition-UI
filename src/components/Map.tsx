@@ -20,7 +20,7 @@ const Map = () => {
                 width={"100%"}
                 height={"100%"}
             >
-                <Box pt={2} pr={2} alignSelf={"end"}>
+                <Box pt={6} pr={2} alignSelf={"center"}>
                     <SpecialDays />
                 </Box>
                 <Box pb={2} pr={2} display={"flex"} justifyContent={"end"}>
@@ -98,6 +98,7 @@ const SteamboatInteractiveMap = () => {
                     ].forEach((element) => element?.remove());
 
                     const map = iframeDocument.getElementById("_Image1");
+
                     if (map && theme.palette.mode === "dark") {
                         map.setAttributeNS(
                             "http://www.w3.org/1999/xlink",
