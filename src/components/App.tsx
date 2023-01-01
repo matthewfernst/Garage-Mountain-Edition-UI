@@ -25,6 +25,7 @@ import ImportantAlertsCard from "./Map/ImportantAlerts";
 import { useState } from "react";
 import LiveStreams from "./LiveStreams";
 import callExternalAPIOnInterval from "../hooks/callExternalAPIOnInterval";
+import SpecialDays from "./Map/SpecialDays";
 
 /* eslint-disable no-unused-vars */
 declare module "@mui/material/styles" {
@@ -160,6 +161,9 @@ const App = () => {
                                     <ChromeReaderModeIcon sx={{ fontSize: 24, rotate: "180deg" }} />
                                 </IconButton>
                                 <Typography fontSize={18}>Steamboat Springs</Typography>
+                            </Box>
+                            <Box alignSelf={"center"}>
+                                <SpecialDays />
                             </Box>
                             <Box display={"flex"} justifyContent={"space-between"} width={60}>
                                 <LiveStreams />
