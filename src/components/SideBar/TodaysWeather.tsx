@@ -45,7 +45,7 @@ const TodaysWeather = (props: { todaysWeather: any; todaysSnow: any }) => {
                 H:{parseInt(props.todaysWeather.TemperatureHighF)}° L:
                 {parseInt(props.todaysWeather.TemperatureLowF)}°
             </Typography>
-            <Box mt={3} pl={2} pr={2} display={"flex"} justifyContent={"space-between"}>
+            <Box mt={2} pl={2} pr={2} display={"flex"} justifyContent={"space-between"}>
                 <Box display={"flex"} alignItems={"center"}>
                     <AirIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
                     <Typography sx={{ pl: 2 }}>
