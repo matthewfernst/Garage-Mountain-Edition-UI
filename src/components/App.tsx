@@ -94,7 +94,7 @@ const App = () => {
         `https://api.sunrise-sunset.org/json?lat=${VITE_LATITUDE}&lng=${VITE_LONGITUDE}&formatted=0`
     );
 
-    let mode: PaletteMode = "light";
+    let mode: PaletteMode = "dark";
 
     if (sunData) {
         const nowHour = DateTime.now().hour;
