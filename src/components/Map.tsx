@@ -4,8 +4,6 @@ import { Box, Button, Divider, useTheme } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-import SpecialDays from "./Map/SpecialDays";
-
 const Map = () => {
     const theme = useTheme();
     return (
@@ -20,9 +18,6 @@ const Map = () => {
                 width={"100%"}
                 height={"100%"}
             >
-                <Box pt={6} pr={2} alignSelf={"center"}>
-                    <SpecialDays />
-                </Box>
                 <Box pb={2} pr={2} display={"flex"} justifyContent={"end"}>
                     <Box
                         display={"flex"}
