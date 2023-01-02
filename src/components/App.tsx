@@ -89,11 +89,35 @@ const App = () => {
     if (!VITE_TIME_INTERVAL) {
         throw new Error("Missing .env file. Please refer to the README.md for more information.");
     }
-
+    const [winterEdition, setWinterEdition] = useState<boolean>(true);
     const sunData: any | undefined = callExternalAPIOnInterval(
         VITE_TIME_INTERVAL,
         `https://api.sunrise-sunset.org/json?lat=${VITE_LATITUDE}&lng=${VITE_LONGITUDE}&formatted=0`
     );
+
+    const resortOperationStatus: any | undefined = callExternalAPIOnInterval(
+        8.64e7, // 24 hours
+        "https://www.coloradoski.com/resort-season-dates/"
+    );
+
+    if (resortOperationStatus) {
+        const positionToStart = resortOperationStatus.search(
+            "<td><b><strong>STEAMBOAT</strong></b></td>"
+        );
+        const positionToEnd =
+            resortOperationStatus.search("<td><b><strong>STEAMBOAT</strong></b></td>") + 80;
+        const resortStatus = resortOperationStatus
+            .substring(positionToStart, positionToEnd)
+            .replace(/<[^>]*>?/gm, "")
+            .split("\n");
+        let resortEndDateInMillis = resortStatus[2].trim();
+        resortEndDateInMillis = DateTime.fromFormat(resortEndDateInMillis, "MMMM d").toMillis();
+
+        const todaysDateInMillis = DateTime.now().toMillis();
+        if (todaysDateInMillis > resortEndDateInMillis) {
+            setWinterEdition(false);
+        }
+    }
 
     let mode: PaletteMode = "light";
 
