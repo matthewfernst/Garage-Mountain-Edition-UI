@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { DateTime } from "luxon";
 
