@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 
+app.disableHardwareAcceleration();
+
 let mainWindow;
 
 function createWindow() {
