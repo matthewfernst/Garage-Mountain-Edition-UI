@@ -2,15 +2,16 @@ import { gql } from "@apollo/client";
 
 export const GET_LEADERBOARD = gql`
     query GetLeaderboard {
-        leaderboard(limit: 3) {
+        leaderboard {
             id
             firstName
             lastName
             profilePictureUrl
             logbook {
-                distance
-                topSpeed
-                verticalDistance
+                distance(system: IMPERIAL)
+                topSpeed(system: IMPERIAL)
+                verticalDistance(system: IMPERIAL)
+                runCount
             }
         }
     }

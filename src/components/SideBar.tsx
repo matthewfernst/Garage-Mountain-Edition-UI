@@ -32,9 +32,9 @@ const SideBar = () => {
                     todaysSnow={resortData.Forecast.OneDay}
                 />
             )}
-            <Divider sx={{ borderBottomWidth: "medium", mt: 2, mb: 2 }} />
-            {forecast && <Forecast forecast={forecast} />}
             <Divider sx={{ borderBottomWidth: "medium", mt: 2, mb: 1 }} />
+            {forecast && <Forecast forecast={forecast} />}
+            <Divider sx={{ borderBottomWidth: "medium", mt: 1, mb: 1 }} />
             <MountainStatus />
             <Divider sx={{ borderBottomWidth: "medium", mt: 1, mb: 2 }} />
             <Leaderboard />

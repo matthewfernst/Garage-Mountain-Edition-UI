@@ -15,26 +15,19 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
             {props.forecast.map((day: any, index: number) => {
                 return (
                     <Fragment key={index}>
-                        <Box
-                            display={"flex"}
-                            flexDirection={"row"}
-                            alignItems={"center"}
-                            justifyContent={"space-between"}
-                            pt={1}
-                            width={340}
-                        >
-                            <Typography sx={{ fontWeight: 500 }}>
+                        <Box display={"flex"} alignItems={"center"} pt={1} pb={1}>
+                            <Typography sx={{ width: 50, fontWeight: 500 }}>
                                 {day.date && DateTime.fromISO(day.date).toFormat("EEE")}
                             </Typography>
                             <span
                                 className={`wi wi-forecast-io-${day.conditions.replace("_", "-")}`}
-                                style={{ fontSize: 16, display: "table" }}
+                                style={{ width: 50, fontSize: 16, display: "table" }}
                             />
-                            <Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
-                                <Typography sx={{ paddingRight: 1 }}>
+                            <Box display={"flex"} alignItems={"center"} sx={{ width: 220 }}>
+                                <Typography sx={{ paddingRight: 1.5 }}>
                                     {parseFloat(day.temp_low_f).toFixed(0)}°{" "}
                                 </Typography>
-                                <div style={{ width: 100 }}>
+                                <div style={{ width: 120 }}>
                                     <LinearProgress
                                         variant="determinate"
                                         value={100}
@@ -64,19 +57,18 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                         }}
                                     />
                                 </div>
-                                <Typography sx={{ paddingLeft: 1 }}>
+                                <Typography sx={{ paddingLeft: 1.5 }}>
                                     {parseFloat(day.temp_high_f).toFixed(0)}°
                                 </Typography>
                             </Box>
-                            <Box alignItems={"center"} display={"flex"} flexDirection={"column"}>
+                            <Box alignItems={"center"} display={"flex"}>
                                 <span
                                     className={`wi wi-forecast-io-snow`}
-                                    style={{ fontSize: 16 }}
+                                    style={{ marginRight: 6, fontSize: 16 }}
                                 />
                                 <Typography>{day.forecasted_snow_day_in}"</Typography>
                             </Box>
                         </Box>
-
                         {index !== props.forecast.length - 1 && <Divider flexItem />}
                     </Fragment>
                 );

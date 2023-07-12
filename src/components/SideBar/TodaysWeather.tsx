@@ -28,24 +28,34 @@ const TodaysWeather = (props: { todaysWeather: any; todaysSnow: any }) => {
     };
 
     return (
-        <Box display={"flex"} flexDirection={"column"}>
-            <Typography align={"center"} sx={{ fontSize: 22, pb: 2 }}>
-                {getConditionsInHumanReadableFormat(todaysConditions)}
-            </Typography>
-            <span
-                className={`wi wi-${
-                    theme.palette.mode === "dark" ? "night" : "day"
-                }-${todaysConditions}`}
-                style={{ fontSize: 60, display: "table", margin: "auto" }}
-            />
-            <Typography align={"center"} style={{ fontSize: 24 }}>
-                {parseInt(props.todaysWeather.TemperatureF)}°
-            </Typography>
-            <Typography align={"center"} style={{ fontSize: 16 }}>
-                H:{parseInt(props.todaysWeather.TemperatureHighF)}° L:
-                {parseInt(props.todaysWeather.TemperatureLowF)}°
-            </Typography>
-            <Box mt={2} pl={2} pr={2} display={"flex"} justifyContent={"space-between"}>
+        <Box display={"flex"}>
+            <Box>
+                <Typography sx={{ fontSize: 22 }}>
+                    {getConditionsInHumanReadableFormat(todaysConditions)}
+                </Typography>
+                <Box display={"flex"} sx={{ mt: 1, mb: 1 }}>
+                    <span
+                        className={`wi wi-${
+                            theme.palette.mode === "dark" ? "night" : "day"
+                        }-${todaysConditions}`}
+                        style={{ fontSize: 60 }}
+                    />
+                    <Typography sx={{ ml: 2, fontSize: 30 }}>
+                        {parseInt(props.todaysWeather.TemperatureF)}°
+                    </Typography>
+                </Box>
+                <Typography style={{ fontSize: 16 }}>
+                    H: {parseInt(props.todaysWeather.TemperatureHighF)}° L:{" "}
+                    {parseInt(props.todaysWeather.TemperatureLowF)}°
+                </Typography>
+            </Box>
+            <Box
+                ml={4}
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                alignContent={"center"}
+            >
                 <Box display={"flex"} alignItems={"center"}>
                     <AirIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
                     <Typography sx={{ pl: 2 }}>
@@ -60,7 +70,7 @@ const TodaysWeather = (props: { todaysWeather: any; todaysSnow: any }) => {
                 <Box display={"flex"} alignItems={"center"}>
                     <AcUnitIcon style={{ fontSize: "15", verticalAlign: "middle" }} />
                     <Typography sx={{ pl: 1 }}>
-                        {props.todaysSnow.forecasted_snow_day_in}{" "}"
+                        {props.todaysSnow.forecasted_snow_day_in} "
                     </Typography>
                 </Box>
             </Box>

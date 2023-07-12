@@ -170,7 +170,6 @@ const App = () => {
                             </Box>
                         </Toolbar>
                     </AppBar>
-
                     <Drawer
                         sx={{
                             width: drawerWidth,
