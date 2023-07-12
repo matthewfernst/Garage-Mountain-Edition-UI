@@ -1,42 +1,35 @@
 import { Avatar, Box, Divider, Typography } from "@mui/material";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
+import { useQuery } from "@apollo/client";
+
+import { GET_LEADERBOARD } from "../../graphql/query";
+
 const Leaderboard = () => {
+    const { loading, error, data } = useQuery(GET_LEADERBOARD);
+    console.log(loading, error, data);
+
     return (
         <Box display={"flex"} flexDirection={"column"}>
-            <LeaderboardIcon sx={{ fontSize: 30 }} />
-            <Box  display={"flex"} flexDirection={"column"}>
-                <Box display={"flex"} alignItems={"center"}>
-                    <Avatar alt="Matthew Ernst" src="/static/images/avatar/1.jpg" />
-                    <Box ml={2} display={"flex"} flexDirection={"column"}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
-                            Matthew Ernst
-                        </Typography>
-                        <Typography sx={{ mt: -0.5, fontSize: 15, fontWeight: 400 }}>
-                            10,200 ft
-                        </Typography>
-                    </Box>
-                </Box>
-                <Divider sx={{ m: 1 }} />
-                <Box display={"flex"} alignItems={"center"}>
-                    <Avatar alt="Max Rosoff" src="/static/images/avatar/1.jpg" />
-                    <Box ml={2} display={"flex"} flexDirection={"column"}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 400 }}>Max Rosoff</Typography>
-                        <Typography sx={{ mt: -0.5, fontSize: 15, fontWeight: 400 }}>
-                            8,400 ft
-                        </Typography>
-                    </Box>
-                </Box>
-                <Divider sx={{ m: 1 }} />
-                <Box display={"flex"} alignItems={"center"}>
-                    <Avatar alt="Dante Delee" src="/static/images/avatar/1.jpg" />
-                    <Box ml={2} display={"flex"} flexDirection={"column"}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 400 }}>Dante Delee</Typography>
-                        <Typography sx={{ mt: -0.5, fontSize: 15, fontWeight: 400 }}>
-                            6,920 ft
-                        </Typography>
-                    </Box>
-                </Box>
+            <Box display={"flex"} flexDirection={"column"}>
+                {data.leaderboard.map((user: any, index: number) => {
+                    return (
+                        <>
+                            <Box display={"flex"} alignItems={"center"}>
+                                <Avatar alt="Matthew Ernst" src="/static/images/avatar/1.jpg" />
+                                <Box ml={2} display={"flex"} flexDirection={"column"}>
+                                    <Typography sx={{ fontSize: 20, fontWeight: 400 }}>
+                                        {user.firstName} {user.lastName}
+                                    </Typography>
+                                    <Typography sx={{ mt: -0.5, fontSize: 15, fontWeight: 400 }}>
+                                        10,200 ft
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            {index !== data.leaderboard.length - 1 && <Divider sx={{ m: 1 }} />}
+                        </>
+                    );
+                })}
             </Box>
         </Box>
     );

@@ -186,7 +186,6 @@ const App = () => {
                     >
                         <SideBar />
                     </Drawer>
-
                     <Main open={open}>
                         <Box flexGrow={1} height={"100%"} pt={2}>
                             <MountainMapCard />
