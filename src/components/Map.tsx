@@ -1,74 +1,10 @@
 import { useEffect, useRef } from "react";
 
-import { Box, Button, Divider, useTheme } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import { Box, useTheme } from "@mui/material";
 
 const Map = () => {
-    const theme = useTheme();
     return (
         <Box position={"relative"} width={"100%"} height={"100%"} sx={{ pointerEvents: "none" }}>
-            <Box
-                position={"absolute"}
-                top={0}
-                left={0}
-                display={"flex"}
-                flexDirection={"column"}
-                justifyContent={"space-between"}
-                width={"100%"}
-                height={"100%"}
-            >
-                <Box pb={2} pr={2} display={"flex"} justifyContent={"end"}>
-                    <Box
-                        display={"flex"}
-                        sx={{
-                            backgroundColor:
-                                theme.palette.mode == "light"
-                                    ? theme.palette.neutral.main
-                                    : "#121212",
-                            borderRadius: 5
-                        }}
-                    >
-                        <Button
-                            variant={"text"}
-                            sx={{
-                                pointerEvents: "auto",
-                                backgroundColor:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.main
-                                        : "#121212",
-                                color:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.dark
-                                        : theme.palette.neutral.main,
-                                borderTopLeftRadius: 28,
-                                borderBottomLeftRadius: 28
-                            }}
-                        >
-                            <RemoveIcon sx={{ fontSize: 20 }} />
-                        </Button>
-                        <Divider orientation={"vertical"} flexItem />
-                        <Button
-                            variant={"text"}
-                            sx={{
-                                pointerEvents: "auto",
-                                backgroundColor:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.main
-                                        : "#121212",
-                                color:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.dark
-                                        : theme.palette.neutral.main,
-                                borderTopRightRadius: 28,
-                                borderBottomRightRadius: 28
-                            }}
-                        >
-                            <AddIcon sx={{ fontSize: 20 }} />
-                        </Button>
-                    </Box>
-                </Box>
-            </Box>
             <SteamboatInteractiveMap />
         </Box>
     );
