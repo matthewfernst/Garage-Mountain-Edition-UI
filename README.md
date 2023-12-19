@@ -9,6 +9,12 @@ This project is an another flavor of the original Garage-UI available [here](htt
 
 This project is an Electron app that runs on a Raspberry Pi. The app is designed to be used with a 10"/12" touch screen. For a suggested list of hardware for this project visit this [link](https://www.amazon.com/hz/wishlist/ls/38NBC7T3TDLGV?ref_=wl_share).
 
+### Lynx Leaderboard Connection
+<img src="src/assets/images/LynxAppIcon.png" width="150" height="150"/>
+
+
+Additionally, you can download the [Lynx iOS App](https://apps.apple.com/us/app/lynx-mountain-ui/id6451053614) to connect your [Slope files](https://getslopes.com) to populate the leaderboard on Mountain-UI. For more information, download the app or visit the [GitHub repository](https://github.com/matthewfernst/Lynx).
+
 ### Installation
 
 Clone the repository and run the [install script](scripts/install.sh). This will install the dependencies, build the app, and change your Raspberry Pi to auto update itself and auto launch to Mountain-UI. ⚠️ ***Make sure to run the script in the Mountain-UI directory.***

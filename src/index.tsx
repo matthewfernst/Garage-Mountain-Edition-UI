@@ -10,7 +10,7 @@ import "./assets/styles/weather-icons-wind.min.css";
 import "./assets/styles/weather-icons.min.css";
 
 const client = new ApolloClient({
-    uri: "https://nyw0w1k06b.execute-api.us-west-1.amazonaws.com/production/graphql",
+    uri: "https://production.lynx-api.com/graphql",
     cache: new InMemoryCache()
 });
 
