@@ -89,18 +89,19 @@ const SteamboatInteractiveMap = () => {
                     [
                         iframeDocument.getElementById("fullscreen"),
                         iframeDocument.getElementById("zoomControls"),
-                        iframeDocument.getElementById("menu")
+                        iframeDocument.getElementById("menu"),
+                        iframeDocument.getElementById("infoLayer")
                     ].forEach((element) => element?.remove());
 
                     const map = iframeDocument.getElementById("_Image1");
 
-                    if (map && theme.palette.mode === "dark") {
-                        map.setAttributeNS(
-                            "http://www.w3.org/1999/xlink",
-                            "xlink:href",
-                            "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatDarkMode.jpg"
-                        );
-                    }
+                    // if (map && theme.palette.mode === "dark") {
+                    //     map.setAttributeNS(
+                    //         "http://www.w3.org/1999/xlink",
+                    //         "xlink:href",
+                    //         "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatDarkMode.jpg"
+                    //     );
+                    // }
                 }
             }
         }, 5000);

@@ -137,7 +137,7 @@ const App = () => {
                         <Toolbar
                             variant="dense"
                             sx={{
-                                minHeight: 48,
+                                minHeight: 40,
                                 justifyContent: "space-between",
                                 backgroundColor:
                                     theme.palette.mode == "light"
@@ -157,14 +157,14 @@ const App = () => {
                                     onClick={handleDrawerToggle}
                                     sx={{ mr: 1 }}
                                 >
-                                    <ChromeReaderModeIcon sx={{ fontSize: 24, rotate: "180deg" }} />
+                                    <ChromeReaderModeIcon sx={{ fontSize: 20, rotate: "180deg" }} />
                                 </IconButton>
                                 <Typography fontSize={18}>Steamboat Springs</Typography>
                             </Box>
                             <Box alignSelf={"center"}>
                                 <SpecialDays />
                             </Box>
-                            <Box display={"flex"} justifyContent={"space-between"} width={60}>
+                            <Box display={"flex"} justifyContent={"space-between"} width={40}>
                                 <LiveStreams />
                                 <ImportantAlertsCard />
                             </Box>
