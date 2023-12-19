@@ -137,7 +137,7 @@ const App = () => {
                         <Toolbar
                             variant="dense"
                             sx={{
-                                minHeight: 40,
+                                minHeight: 32,
                                 justifyContent: "space-between",
                                 backgroundColor:
                                     theme.palette.mode == "light"
@@ -155,7 +155,7 @@ const App = () => {
                                     aria-label="open drawer"
                                     edge="start"
                                     onClick={handleDrawerToggle}
-                                    sx={{ mr: 1 }}
+                                    sx={{ mr: 1, height: 20, width: 20 }}
                                 >
                                     <ChromeReaderModeIcon sx={{ fontSize: 20, rotate: "180deg" }} />
                                 </IconButton>

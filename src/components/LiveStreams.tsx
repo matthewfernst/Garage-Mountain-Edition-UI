@@ -33,7 +33,7 @@ const LiveStreams = () => {
     return (
         <>
             <IconButton edge={"end"} color={"inherit"} onClick={() => setDialogOpen(true)}>
-                <VideocamIcon sx={{ fontSize: 24 }} />
+                <VideocamIcon sx={{ fontSize: 24, height: 20, width: 20 }} />
             </IconButton>
             <Dialog fullScreen={true} open={dialogOpen} onClose={() => setDialogOpen(false)}>
                 <DialogActions style={{ justifyContent: "space-between" }}>
