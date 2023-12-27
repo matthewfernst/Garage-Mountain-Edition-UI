@@ -1,5 +1,4 @@
 import { Avatar, Box, Divider, Typography } from "@mui/material";
-import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 import { useQuery } from "@apollo/client";
 
@@ -12,13 +11,10 @@ const Leaderboard = () => {
         return null;
     }
 
-    console.log(data);
-
     return (
         <Box display={"flex"} flexDirection={"column"}>
             <Box display={"flex"} flexDirection={"column"}>
                 {data.leaderboard.map((user: any, index: number) => {
-                    const sumArray = (array: number[]) => array.reduce((a, b) => a + b, 0);
                     return (
                         <>
                             <Box display={"flex"} alignItems={"center"}>
@@ -31,25 +27,17 @@ const Leaderboard = () => {
                                         <Typography
                                             sx={{ mt: -0.5, fontSize: 14, fontWeight: 400 }}
                                         >
-                                            {sumArray(
-                                                user.logbook.map(
-                                                    (item: any) => item.verticalDistance
-                                                )
-                                            ).toFixed(0) + " ft"}
+                                            {user.stats.verticalDistance.toFixed(0) + " ft"}
                                         </Typography>
                                         <Typography
                                             sx={{ ml: 1, mt: -0.5, fontSize: 14, fontWeight: 400 }}
                                         >
-                                            {sumArray(
-                                                user.logbook.map((item: any) => item.topSpeed)
-                                            ).toFixed(0) + " mph"}
+                                            {user.stats.topSpeed.toFixed(0) + " mph"}
                                         </Typography>
                                         <Typography
                                             sx={{ ml: 1, mt: -0.5, fontSize: 14, fontWeight: 400 }}
                                         >
-                                            {sumArray(
-                                                user.logbook.map((item: any) => item.runCount)
-                                            ).toFixed(0) + " runs"}
+                                            {user.stats.runCount.toFixed(0) + " runs"}
                                         </Typography>
                                     </Box>
                                 </Box>

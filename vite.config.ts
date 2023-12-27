@@ -8,7 +8,6 @@ import renderer from "vite-plugin-electron-renderer";
 export default defineConfig({
     build: {
         target: "esnext"
-
     },
     plugins: [
         electron({
@@ -23,9 +22,7 @@ export default defineConfig({
             }
         }),
         react(),
-        renderer({
-            nodeIntegration: true
-        })
+        renderer({})
     ],
     server: {
         port: 3000,
