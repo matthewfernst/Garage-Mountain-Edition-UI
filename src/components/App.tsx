@@ -122,74 +122,16 @@ const App = () => {
             }
         })
     );
-    const [open, setOpen] = useState<boolean>(true);
-
-    const handleDrawerToggle = () => {
-        setOpen(!open);
-    };
 
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Box height={"100%"} display={"flex"} flexDirection={"row"}>
-                    <AppBar position="fixed" open={open}>
-                        <Toolbar
-                            variant="dense"
-                            sx={{
-                                minHeight: 32,
-                                justifyContent: "space-between",
-                                backgroundColor:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.main
-                                        : "#121212",
-                                color:
-                                    theme.palette.mode == "light"
-                                        ? theme.palette.neutral.dark
-                                        : theme.palette.neutral.main
-                            }}
-                        >
-                            <Box display={"flex"} alignItems={"center"}>
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="open drawer"
-                                    edge="start"
-                                    onClick={handleDrawerToggle}
-                                    sx={{ mr: 1, height: 20, width: 20 }}
-                                >
-                                    <ChromeReaderModeIcon sx={{ fontSize: 20, rotate: "180deg" }} />
-                                </IconButton>
-                                <Typography fontSize={18}>Steamboat Springs</Typography>
-                            </Box>
-                            <Box alignSelf={"center"}>
-                                <SpecialDays />
-                            </Box>
-                            <Box display={"flex"} justifyContent={"space-between"} width={40}>
-                                <LiveStreams />
-                                <ImportantAlertsCard />
-                            </Box>
-                        </Toolbar>
-                    </AppBar>
-                    <Drawer
-                        sx={{
-                            width: drawerWidth,
-                            flexShrink: 0,
-                            "& .MuiDrawer-paper": {
-                                width: drawerWidth,
-                                boxSizing: "border-box"
-                            }
-                        }}
-                        variant="persistent"
-                        anchor="left"
-                        open={open}
-                    >
-                        <SideBar />
-                    </Drawer>
-                    <Main open={open}>
-                        <Box flexGrow={1} height={"100%"} pt={2}>
-                            <MountainMapCard />
-                        </Box>
-                    </Main>
+                <Box height={"100%"} display={"flex"}>
+                    <SideBar />
+                    <Box flexGrow={1} height={"100%"}>
+                        <MountainMapCard />
+                    </Box>
                 </Box>
             </ThemeProvider>
         </StyledEngineProvider>

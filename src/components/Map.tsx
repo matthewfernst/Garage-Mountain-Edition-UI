@@ -28,16 +28,6 @@ const SteamboatInteractiveMap = () => {
                         iframeDocument.getElementById("menu"),
                         iframeDocument.getElementById("infoLayer")
                     ].forEach((element) => element?.remove());
-
-                    const map = iframeDocument.getElementById("_Image1");
-
-                    // if (map && theme.palette.mode === "dark") {
-                    //     map.setAttributeNS(
-                    //         "http://www.w3.org/1999/xlink",
-                    //         "xlink:href",
-                    //         "https://raw.githubusercontent.com/matthewfernst/Mountain-UI/main/src/assets/images/SteamboatDarkMode.jpg"
-                    //     );
-                    // }
                 }
             }
         }, 5000);
@@ -56,7 +46,6 @@ const SteamboatInteractiveMap = () => {
     };
 
     const opacity = theme.palette.mode === "dark" ? 1 : 0.8;
-
     return (
         <iframe
             src={`https://vicomap-cdn.resorts-interactive.com/map/1800?fullscreen=true&menu=3.7,3.10,3.14&openLiftAnimation=${VITE_MAP_ANIMATIONS}&openLiftColor=green&liftHighlightOpacity=0.1&backgroundOpacity=${opacity}`}
