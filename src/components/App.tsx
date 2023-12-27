@@ -1,17 +1,6 @@
-import {
-    Box,
-    CssBaseline,
-    PaletteMode,
-    Drawer,
-    IconButton,
-    Toolbar,
-    Typography
-} from "@mui/material";
+import { Box, CssBaseline, PaletteMode } from "@mui/material";
 import { blue, grey, red } from "@mui/material/colors";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import {
-    styled,
     createTheme,
     responsiveFontSizes,
     ThemeProvider,
@@ -21,11 +10,7 @@ import { DateTime } from "luxon";
 
 import SideBar from "./SideBar";
 import MountainMapCard from "./Map";
-import ImportantAlertsCard from "./Map/ImportantAlerts";
-import { useState } from "react";
-import LiveStreams from "./LiveStreams";
 import callExternalAPIOnInterval from "../hooks/callExternalAPIOnInterval";
-import SpecialDays from "./Map/SpecialDays";
 
 /* eslint-disable no-unused-vars */
 declare module "@mui/material/styles" {
@@ -45,44 +30,6 @@ declare module "@mui/material/styles" {
         mediumDark?: string;
     }
 }
-/* eslint-enable no-unused-vars */
-const drawerWidth = 400;
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
-    open?: boolean;
-}>(({ theme, open }) => ({
-    flexGrow: 1,
-
-    transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-        transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen
-        }),
-        marginLeft: 0
-    })
-}));
-
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== "open"
-})<MuiAppBarProps>(({ theme, open }) => ({
-    transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-    }),
-    ...(open && {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen
-        })
-    })
-}));
 
 const App = () => {
     const { VITE_TIME_INTERVAL, VITE_LATITUDE, VITE_LONGITUDE } = import.meta.env;
