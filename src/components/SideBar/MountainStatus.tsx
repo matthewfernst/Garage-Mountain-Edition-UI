@@ -13,7 +13,7 @@ const MountainStatus = () => {
     )?.SnowReport;
 
     return (
-        <Box display={"flex"}>
+        <Box display={"flex"} justifyContent={"center"}>
             <MountainPieChart
                 chartUnit={"Trails"}
                 totalOpen={parseInt(snowReport?.TotalOpenTrails)}

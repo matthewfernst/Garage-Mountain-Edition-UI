@@ -4,6 +4,8 @@ import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgr
 import { DateTime } from "luxon";
 
 interface ForecastDay {
+    date: string;
+    conditions: string;
     forecasted_snow_day_in: string;
     temp_high_f: string;
     temp_low_f: string;
@@ -12,7 +14,11 @@ interface ForecastDay {
 const Forecast = (props: { forecast: ForecastDay[] }) => {
     return (
         <Box display={"flex"} flexDirection={"column"}>
-            {props.forecast.map((day: any, index: number) => {
+            {props.forecast.map((day, index: number) => {
+                let iconConditions = day.conditions.replaceAll("_", "-");
+                if (iconConditions.includes("t-storms")) {
+                    iconConditions = "thunderstorm";
+                }
                 return (
                     <Fragment key={index}>
                         <Box display={"flex"} alignItems={"center"} pt={1} pb={1}>
@@ -20,7 +26,7 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                 {day.date && DateTime.fromISO(day.date).toFormat("EEE")}
                             </Typography>
                             <span
-                                className={`wi wi-forecast-io-${day.conditions.replace("_", "-")}`}
+                                className={`wi wi-forecast-io-${iconConditions}`}
                                 style={{ width: 50, fontSize: 16, display: "table" }}
                             />
                             <Box display={"flex"} alignItems={"center"} sx={{ width: 220 }}>
@@ -39,7 +45,7 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                                 background: `linear-gradient(to right, ${
                                                     "hsl(" +
                                                     [
-                                                        240 - 170 * (day.temp_low_f / 75),
+                                                        240 - 170 * (parseInt(day.temp_low_f) / 75),
                                                         "90%",
                                                         "50%"
                                                     ] +
@@ -47,7 +53,8 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                                 } 30%, ${
                                                     "hsl(" +
                                                     [
-                                                        240 - 170 * (day.temp_high_f / 75),
+                                                        240 -
+                                                            170 * (parseInt(day.temp_high_f) / 75),
                                                         "90%",
                                                         "50%"
                                                     ] +
@@ -58,7 +65,7 @@ const Forecast = (props: { forecast: ForecastDay[] }) => {
                                     />
                                 </div>
                                 <Typography sx={{ paddingLeft: 1.5 }}>
-                                    {parseFloat(day.temp_high_f).toFixed(0)}°
+                                    {parseInt(day.temp_high_f)}°
                                 </Typography>
                             </Box>
                             <Box alignItems={"center"} display={"flex"}>
