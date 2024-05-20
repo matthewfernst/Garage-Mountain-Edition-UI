@@ -99,7 +99,11 @@ const FractionLabel = (
     return (
         <>
             <text
-                x={cx - 5 * props.totalOpen.toString().length}
+                x={
+                    cx - 5 -
+                    2 * props.totalOpen.toString().length -
+                    2 * props.totalAmount.toString().length
+                }
                 y={cy - 2}
                 fill={textColor}
                 textAnchor="middle"
@@ -109,7 +113,12 @@ const FractionLabel = (
                 {props.totalOpen}
             </text>
             <text
-                x={cx + 15}
+                x={
+                    cx -
+                    0 +
+                    4 * props.totalOpen.toString().length +
+                    2 * props.totalAmount.toString().length
+                }
                 y={cy - 2}
                 fill={textColor}
                 textAnchor="middle"

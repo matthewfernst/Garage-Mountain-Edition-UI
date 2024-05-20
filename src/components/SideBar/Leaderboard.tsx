@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Skeleton, Typography } from "@mui/material";
 
 import { useQuery } from "@apollo/client";
 
@@ -7,7 +7,7 @@ import { GET_LEADERBOARD } from "../../graphql/query";
 const Leaderboard = () => {
     const { loading, error, data } = useQuery(GET_LEADERBOARD);
     if (loading || error) {
-        return null;
+        return <Skeleton></Skeleton>;
     }
 
     const fieldsByIndex = [0, 1, 2].map((index: number) => {
@@ -23,12 +23,7 @@ const Leaderboard = () => {
     });
 
     return (
-        <Box
-            display={"flex"}
-            width={370}
-            height={"100%"}
-            sx={{ mb: 1, overflowX: "scroll" }}
-        >
+        <Box display={"flex"} width={370} height={"100%"} sx={{ mb: 1, overflowX: "scroll" }}>
             {fieldsByIndex.map((field: any, index: number) => {
                 return (
                     <Box
@@ -39,7 +34,7 @@ const Leaderboard = () => {
                         mr={index !== fieldsByIndex.length - 1 ? 3 : 0}
                     >
                         <Typography
-                            sx={{ alignSelf: "center", pb: 3, fontSize: 17, fontWeight: 500 }}
+                            sx={{ alignSelf: "center", pb: 2.5, fontSize: 17, fontWeight: 500 }}
                         >
                             {fieldToTitle(indexToField(index))} Leaderboard
                         </Typography>

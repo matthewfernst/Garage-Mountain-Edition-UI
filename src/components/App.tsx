@@ -75,10 +75,10 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Box height={"100%"} display={"flex"}>
-                    <SideBar />
                     <Box flexGrow={1} height={"100%"}>
                         <MountainMapCard />
                     </Box>
+                    <SideBar />
                 </Box>
             </ThemeProvider>
         </StyledEngineProvider>
